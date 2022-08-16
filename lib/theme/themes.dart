@@ -46,6 +46,9 @@ class Themes {
       headline5: TextStyle(
         color: Color(0xFF002359),
       ),
+      headline6: TextStyle(
+        color: Color(0xFF002359),
+      ),
       headline2: TextStyle(
         color: Color(0xFF002359),
       ),
