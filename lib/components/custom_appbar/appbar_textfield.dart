@@ -12,22 +12,29 @@ class AppbarTextfield extends StatefulWidget {
 
 class _AppbarTextfieldState extends State<AppbarTextfield> {
   final _hintText = "Arama";
+  double height = 0.07;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: context.horizontalPaddingMedium,
-      child: TextField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: context.highBorderRadius,
+      child: SizedBox(
+        height: context.dynamicHeight(height),
+        child: TextField(
+          style: const TextStyle(color: cTextFieldTextColor),
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: context.highBorderRadius,
+            ),
+            hintText: _hintText,
+            contentPadding: EdgeInsets.zero,
+            hintStyle: const TextStyle(color: Colors.black),
+            filled: true,
+            fillColor: cTextFieldFillColor,
+            enabledBorder: _outlineInputBorder(context),
+            focusedBorder: _outlineInputBorder(context),
+            prefixIcon: const Icon(Icons.search, color: Colors.black),
           ),
-          hintText: _hintText,
-          filled: true,
-          fillColor: cTextFieldFillColor,
-          enabledBorder: _outlineInputBorder(context),
-          focusedBorder: _outlineInputBorder(context),
-          prefixIcon: const Icon(Icons.search, color: Colors.black),
         ),
       ),
     );

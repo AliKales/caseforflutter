@@ -1,6 +1,8 @@
 import 'package:case_study/library/funcs.dart';
+import 'package:case_study/providers/p_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:provider/provider.dart';
 
 import '../dynamic_spacer.dart';
 
@@ -34,7 +36,7 @@ class AppBarTop extends StatelessWidget {
                   const DynamicSpacer(height: 0.05),
                 ],
               ),
-              _buttonThemeChange(),
+              _buttonThemeChange(context),
             ],
           ),
         ),
@@ -68,10 +70,21 @@ class AppBarTop extends StatelessWidget {
             .copyWith(fontWeight: FontWeight.bold));
   }
 
-  IconButton _buttonThemeChange() {
-    return IconButton(
-      onPressed: () {},
-      icon: const Icon(Icons.abc),
+  Widget _buttonThemeChange(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Provider.of<PTheme>(context, listen: false).changeTheme(context);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: context.appTheme.textTheme.headline2!.color,
+          shape: BoxShape.circle,
+        ),
+        padding: context.paddingLow,
+        child: Icon(
+            Funcs().isDark(context) ? Icons.light_mode : Icons.dark_mode_sharp,
+            color: context.appTheme.primaryColor),
+      ),
     );
   }
 }
