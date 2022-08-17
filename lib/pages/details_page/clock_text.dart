@@ -53,22 +53,12 @@ class _ClockTextState extends State<ClockText> {
         child: Align(
           alignment: Alignment.center,
           child: Text(
-            getText(),
+            Funcs().getTextForTime(widget.value),
             style: context.textTheme.headline2!
                 .copyWith(fontWeight: FontWeight.bold),
           ),
         ),
       ),
     );
-  }
-
-  String getText() {
-    String value = widget.value.toString();
-
-    if (value.length == 1) {
-      return "0$value";
-    }
-
-    return value;
   }
 }

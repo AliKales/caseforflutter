@@ -6,7 +6,11 @@ class Funcs {
   ///[getCurrentTime]; 09:05
   String getCurrentTime() {
     DateTime dTNow = DateTime.now();
-    return "${dTNow.hour}:${dTNow.minute}";
+
+    String hour = Funcs().getTextForTime(dTNow.hour);
+    String minute = Funcs().getTextForTime(dTNow.minute);
+
+    return "${hour}:${minute}";
   }
 
   ///[getDateForAppbar]; 16 Eylül, Çarşamba
@@ -26,5 +30,15 @@ class Funcs {
         .replaceAll(",", "")
         .replaceAll("/", "")
         .replaceAll(" ", "");
+  }
+
+  ///[getTextForTime]; 9 => 09
+  String getTextForTime(int value) {
+    String text = value.toString();
+    if (text.length == 1) {
+      return "0$text";
+    }
+
+    return text;
   }
 }
