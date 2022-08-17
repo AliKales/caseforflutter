@@ -7,7 +7,10 @@ class ClockText extends StatefulWidget {
   ///[ClockText] here it expandes in row and after build it gets width to set as height too
   const ClockText({
     Key? key,
+    required this.value,
   }) : super(key: key);
+
+  final int value;
 
   @override
   State<ClockText> createState() => _ClockTextState();
@@ -50,12 +53,22 @@ class _ClockTextState extends State<ClockText> {
         child: Align(
           alignment: Alignment.center,
           child: Text(
-            "13",
+            getText(),
             style: context.textTheme.headline2!
                 .copyWith(fontWeight: FontWeight.bold),
           ),
         ),
       ),
     );
+  }
+
+  String getText() {
+    String value = widget.value.toString();
+
+    if (value.length == 1) {
+      return "0$value";
+    }
+
+    return value;
   }
 }

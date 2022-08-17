@@ -4,9 +4,11 @@ import 'circle_icon.dart';
 import 'container_with_text.dart';
 
 class HPItemView extends StatelessWidget {
-  const HPItemView({Key? key, required this.onTap}) : super(key: key);
+  const HPItemView({Key? key, required this.onTap, required this.text})
+      : super(key: key);
 
   final VoidCallback onTap;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +18,9 @@ class HPItemView extends StatelessWidget {
         onTap: onTap,
         child: Stack(
           alignment: Alignment.center,
-          children: const [
-            ContainerWithText(),
-            Align(
+          children: [
+            ContainerWithText(text: text),
+            const Align(
               alignment: Alignment.centerRight,
               child: CircleIcon(),
             ),
