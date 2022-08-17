@@ -39,7 +39,7 @@ class _DetailsPageViewState extends State<DetailsPageView> with _Mixin {
 
   @override
   Widget build(BuildContext context) {
-    DateTime? dateTime = DateTime.tryParse(timezone?.utcDatetime ?? "");
+    DateTime? dateTime = DateTime.tryParse(timezone?.datetime ?? "");
 
     return Scaffold(
       appBar: _appBar(context),
