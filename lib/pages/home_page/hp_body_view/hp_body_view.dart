@@ -1,9 +1,11 @@
 import 'package:case_study/library/simple_uis.dart';
 import 'package:case_study/pages/details_page/details_page_view.dart';
 import 'package:case_study/pages/home_page/hp_item/hp_item_view.dart';
+import 'package:case_study/providers/p_timezones.dart';
 import 'package:case_study/services/http/service_http.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:provider/provider.dart';
 
 part 'mixin.dart';
 
@@ -28,17 +30,12 @@ class _HPBodyViewState extends State<HPBodyView> with _Mixin {
   }
 
   void _loadTimezones() async {
-    SimpleUIs().showProgressIndicator(context);
-
-    timezones = await getTimezones() ?? [];
-
-    Navigator.pop(context);
-
-    setState(() {});
+    loadTimezones();
   }
 
   @override
   Widget build(BuildContext context) {
+    timezones = Provider.of<PTimezones>(context).getTimezones;
     return Expanded(
       child: Padding(
         padding: context.paddingMedium,
@@ -72,9 +69,7 @@ class _HPBodyViewState extends State<HPBodyView> with _Mixin {
 
   void _handleOnTap(String timezone) {
     context.navigateToPage(
-      DetailsPageView(
-        data:timezone
-      ),
+      DetailsPageView(data: timezone),
     );
   }
 }

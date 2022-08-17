@@ -1,5 +1,7 @@
+import 'package:case_study/providers/p_timezones.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
+import 'package:provider/provider.dart';
 
 import '../../library/values.dart';
 
@@ -21,6 +23,7 @@ class _AppbarTextfieldState extends State<AppbarTextfield> {
       child: SizedBox(
         height: context.dynamicHeight(height),
         child: TextField(
+          onChanged: _onChanged,
           style: const TextStyle(color: cTextFieldTextColor),
           decoration: InputDecoration(
             border: OutlineInputBorder(
@@ -45,5 +48,11 @@ class _AppbarTextfieldState extends State<AppbarTextfield> {
       borderRadius: context.highBorderRadius,
       borderSide: const BorderSide(color: cTextFieldBorderColor),
     );
+  }
+
+  void _onChanged(String text) {
+    if (text.trim() == "") return;
+    
+    Provider.of<PTimezones>(context, listen: false).setFilterText(text.trim());
   }
 }

@@ -18,4 +18,13 @@ class Funcs {
   bool isDark(BuildContext context) {
     return context.appTheme.brightness == Brightness.dark;
   }
+
+  String textForFiltering(String text) {
+    return text
+        .toLowerCase()
+        .trim()
+        .replaceAll(",", "")
+        .replaceAll("/", "")
+        .replaceAll(" ", "");
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:case_study/providers/p_theme.dart';
+import 'package:case_study/providers/p_timezones.dart';
 import 'package:case_study/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +13,9 @@ void main() {
       providers: [
         ChangeNotifierProvider<PTheme>(
           create: (context) => PTheme(Themes().getDeviceTD()),
+        ),
+        ChangeNotifierProvider<PTimezones>(
+          create: (context) => PTimezones(),
         ),
       ],
       child: const MyApp(),
