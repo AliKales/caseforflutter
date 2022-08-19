@@ -13,6 +13,11 @@ class ModelTimezone {
   String? utcOffset;
   int? weekNumber;
 
+  ///Here we remove the Utc offset to get current date of selected place
+  String? editDateTime(String? data) {
+    return data?.split("+").first;
+  }
+
   ModelTimezone(
       {this.abbreviation,
       this.clientIp,
@@ -31,7 +36,7 @@ class ModelTimezone {
   ModelTimezone.fromJson(Map<String, dynamic> json) {
     abbreviation = json['abbreviation'];
     clientIp = json['client_ip'];
-    datetime = json['datetime'];
+    datetime = editDateTime(json['datetime']);
     dayOfWeek = json['day_of_week'];
     dayOfYear = json['day_of_year'];
     dst = json['dst'];

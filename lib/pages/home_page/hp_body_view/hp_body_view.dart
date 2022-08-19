@@ -1,4 +1,3 @@
-import 'package:case_study/library/simple_uis.dart';
 import 'package:case_study/pages/details_page/details_page_view.dart';
 import 'package:case_study/pages/home_page/hp_item/hp_item_view.dart';
 import 'package:case_study/providers/p_timezones.dart';
@@ -68,6 +67,9 @@ class _HPBodyViewState extends State<HPBodyView> with _Mixin {
   }
 
   void _handleOnTap(String timezone) {
+    //here we dissmis the keyboard to avoid renderflex error just in case
+    FocusManager.instance.primaryFocus?.unfocus();
+
     context.navigateToPage(
       DetailsPageView(data: timezone),
     );
